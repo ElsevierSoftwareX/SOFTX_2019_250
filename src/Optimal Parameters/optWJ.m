@@ -6,7 +6,7 @@ function w = optWJ(m,L)
 %   which is equivalent to minimizing the spectral radius of matrix 
 %   T_WJ = -w R + (1-w) I, assuming A = I + R.
 %   Given the format of the problem, the solution is given by:
-%   wopt = 2/(2+m+L).
+%   wopt = 2/(m+L), for m = min(eig(A)) and L = max(eig(A)).
 
 % ==== Could solve this optimization ====
 % w = sdpvar;
@@ -21,6 +21,7 @@ function w = optWJ(m,L)
 % w = double(w);
 
 % ==== Closed-form solution ====
-w = 2/(2+m+L);
+w = 2/(m + L);
+
 end
 

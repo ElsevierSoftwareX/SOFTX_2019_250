@@ -16,6 +16,7 @@ function [algorithms, parameters, names] = getParameters(A, b, r, methods)
 optAlgorithmNames = ["Gradient Descent","alpha"
     "Heavy-Ball","alpha, beta"
     "Nesterov","alpha, beta"
+    "NesterovLTV","alpha, beta"
     "Delayed Nesterov","alpha, beta"
     "Momentum","alpha, beta"
     "FISTA","alpha"
@@ -96,7 +97,9 @@ switch nargin
         % Important quantities regarding the Optimization problem at hand
         Q = A'*A;
         lambdaQ = eig(Q);
-        % Strong convexity parameter
+        % Strong convexity parameter or avoiding zero eigenvalues in case
+        % of simple convexity
+        lambdaQ = lambdaQ(lambdaQ >= 1E-6);
         m = min( lambdaQ );
         % Lipschitz gradient parameter
         L = max( lambdaQ );
@@ -134,6 +137,12 @@ switch nargin
             % Nesterov
             if strcmp(methods(i),"Nesterov") || allMethods
                 optAlgorithms{optIndex} = @nesterov;
+                optParameters{optIndex} = struct('alpha',4/(3*L + m),'beta',(sqrt(3*kappa + 1) - 2)/(sqrt(3*kappa + 1) + 2) );
+                optIndex = optIndex + 1;
+            end
+            % NesterovLTV
+            if strcmp(methods(i),"NesterovLTV") || allMethods
+                optAlgorithms{optIndex} = @nesterovLTV;
                 optParameters{optIndex} = struct('alpha',4/(3*L + m),'beta',(sqrt(3*kappa + 1) - 2)/(sqrt(3*kappa + 1) + 2) );
                 optIndex = optIndex + 1;
             end
@@ -261,7 +270,7 @@ switch nargin
             % Delayed Over-Relaxation (Not Working)
             if strcmp(methods(i),"Delayed Over-Relaxation") || allMethods
                 linEqAlgorithms{linEqIndex} = @dor;
-                linEqParameters{linEqIndex} = struct('method',@jacobi,'parameters',[],'w',optDOR(A));
+                linEqParameters{linEqIndex} = struct('method',@gaussSeidel,'parameters',[],'w',optDOR(A,@Tgs));
                 linEqIndex = linEqIndex + 1;
             end
             % Minimal Residual - DOR

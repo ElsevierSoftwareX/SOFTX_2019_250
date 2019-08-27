@@ -21,6 +21,10 @@ w_values = linspace(0,2,N);
 r_values = linspace(0,2,N);
 spectral_radius = zeros(N,N);
 
+% In case it is not possible select the Jacobi parameters
+w_max = 1;
+r_max = 0;
+
 rho_min = 1;
 
 for i = 1:N
@@ -41,8 +45,9 @@ for i = 1:N
     end
 end
 
-% surf(1:N,1:N,spectral_radius);
+% surf(w_values,r_values,spectral_radius);
+
 % ==== Closed-form solution ====
 %
-end
+
 
