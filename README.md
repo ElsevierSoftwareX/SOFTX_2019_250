@@ -9,6 +9,8 @@ The toolbox currently implements the following optimization algorithms:
 * gradient descent
 * Heavy-ball
 * Nesterov
+* Delayed Nesterov
+* LTV Nesterov
 * Momentum
 * Fast Iterative Shrinkage-Thresholding Algorithm (FISTA)
 * Descent Fast Iterative Soft-thresholding Algorithm (DFISTA)
