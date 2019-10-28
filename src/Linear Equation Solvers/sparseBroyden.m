@@ -7,6 +7,22 @@ function [ x , parameters] = sparseBroyden( x , ~ , A , b, parameters , max_iter
 % The implementation follows the book Iterative Methods for Linear and
 % Nonlinear Equations by C. T. Kelley
 
+% Copyright 2019 Daniel Silvestre
+% This file is part of OPTool.
+%
+% OPTool is free software: you can redistribute it and/or modify 
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% OPTool is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with OPTool.  If not, see <https://www.gnu.org/licenses/>.
+
 % Allocate the parameter structure and initialize variable s for the
 % direction of improvement
 if isempty(parameters)

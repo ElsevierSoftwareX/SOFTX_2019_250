@@ -11,6 +11,22 @@ function [ x , parameters] = aaj( x , previous_x , A , b, parameters, ~)
 %   [3] [Pask] Anderson acceleration of the Jacobi iterative method
 %   An efficient alternative to Krylov methods for large sparse linear systems
 
+% Copyright 2019 Daniel Silvestre
+% This file is part of OPTool.
+%
+% OPTool is free software: you can redistribute it and/or modify 
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% OPTool is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with OPTool.  If not, see <https://www.gnu.org/licenses/>.
+
 if ~isfield(parameters,'Xk') || ~isfield(parameters,'Fk')
     % Declare the variables Xk and Fk in the parameters
     parameters.Xk = zeros(length(x),parameters.m);
