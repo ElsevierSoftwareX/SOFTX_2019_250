@@ -9,6 +9,22 @@ function [ stateVectors , errors ] = quadSolver( algorithmNames , parameters , A
 %   It applies the optimization algorithms and linear equation solvers both
 %   for Ax = b and the normal equation A'Ax = A'b.
 
+% Copyright 2019 Daniel Silvestre
+% This file is part of OPTool.
+%
+% OPTool is free software: you can redistribute it and/or modify 
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% OPTool is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with OPTool.  If not, see <https://www.gnu.org/licenses/>.
+
 % Get the algorithms functions and optimal parameters for the standard
 % version
 [algorithms, optimalParameters, names] = getParameters(A,b,0.5*(b'*b),algorithmNames);
